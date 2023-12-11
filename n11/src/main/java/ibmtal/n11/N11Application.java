@@ -1,4 +1,4 @@
-package ibmtal.sahibinden;
+package ibmtal.n11;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,18 +11,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class SahibindenApplication {
+public class N11Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SahibindenApplication.class, args);
+		SpringApplication.run(N11Application.class, args);
 	}
 	@Bean
 	public Docket sahibindenApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("ibmtal.sahibinden"))
+				.apis(RequestHandlerSelectors.basePackage("ibmtal.n11"))
 				.build()
 				;
 	}
-//http://localhost:8080/swagger-ui.html
 }
