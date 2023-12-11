@@ -17,11 +17,12 @@ public class N11Application {
 		SpringApplication.run(N11Application.class, args);
 	}
 	@Bean
-	public Docket sahibindenApi() {
+	public Docket n11Api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("ibmtal.n11"))
 				.build()
 				;
 	}
+//     http://localhost:8090/swagger-ui.html	
 }
