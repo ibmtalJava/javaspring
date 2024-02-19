@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="jquery.js"></script>
 </head>
-<body onload="getCities()">
+<body onload="getTowns()">
 <style>
     .forminput{
         position: relative;
@@ -112,6 +112,24 @@ function getCities(){
         success: function (resultData) {
             for(i=0;i<resultData.data.length;i++){
                option=new Option(resultData.data[i].name,resultData.data[i].id);
+               document.getElementById("city").add(option);
+            }
+        },
+        error: function (e) {
+          alert("hata vaaaa");
+         }
+    });
+}
+function getTowns(){
+        $.ajax({
+        type: "GET",
+        enctype: 'application/json',
+        url: "http://localhost:8080/api/town/getAll",
+        contentType:"application/json",
+        timeout: 800000,
+        success: function (resultData) {
+            for(i=0;i<resultData.data.length;i++){
+               option=new Option(resultData.data[i].city.name+" - "+ resultData.data[i].name,resultData.data[i].id);
                document.getElementById("city").add(option);
             }
         },
