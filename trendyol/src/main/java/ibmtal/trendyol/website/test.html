@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <input type="text" name="townname" id="townname">
+    <input type="text" name="city" id="city">
+    <input type="button" value="Ekle" onclick="saveCity()">
+    <script>
+        function saveCity(){
+             var data = JSON.stringify({ "name":townname.value, "city": city.value });
+            $.ajax({
+            type: "POST",
+            enctype: 'application/json',
+            url: "http://localhost:8080/api/town/add",
+            data: data,
+            contentType:"application/json",
+            timeout: 800000,
+            success: function (resultData) {
+                alert("ok");
+            },
+            error: function (e) {
+              alert("hata vaaaa");
+             }
+        });
+        }
+    </script>
+</body>
+</html>

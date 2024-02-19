@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+</head>
+<body onload="getCities()">
+<style>
+    .forminput{
+        position: relative;
+        width: 80%;
+        height: 50px;
+        border: 1px solid #6495ED;
+        margin-top: 5px;
+        
+    }
+    .inputcaption{
+        position: relative;
+        width: 30%;
+        height: 30px;
+        background-color: #6495ED;
+        float: left;
+        margin-top: 2px;
+        margin-left: 1%;
+    }
+    .inputcaption div{
+        position: relative;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        padding-top: 8px;
+    }
+    .inputvalue{
+        position: relative;
+        width: 67%;
+        height: 30px;
+        background-color:#c2d6d6;
+        float: left;
+        margin-left: 1%;
+        margin-top: 2px;
+    }
+    .inputvalue div{
+        position: relative;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        padding-top: 5px;        
+    }
+    .inputvalue select{
+        width: 90%;
+        height: 20px;
+    }
+    .inputinfo{
+        width: 100%;
+        font-size: 12px;
+        color:#666 ;
+        text-align: center;
+    }
+</style>
+<div class="forminput">
+    <div class="inputcaption">
+        <div>Şehir</div>
+    </div>
+    <div class="inputvalue">
+        <div>
+            <select name="city" id="city">
+                <option value="">Şehir seçiniz</option>
+            </select>
+        </div>
+    </div>
+    <div class="inputinfo">
+        <div>Lütfen bir şehir seçiniz</div>
+    </div>
+</div>
+<div class="forminput">
+    <div class="inputcaption">
+        <div>İlçe</div>
+    </div>
+    <div class="inputvalue">
+        <div>değer</div>
+    </div>
+    <div class="inputinfo">
+        <div>Lütfen ilçe adını giriniz</div>
+    </div>
+</div>
+<div class="forminput">
+    <div class="inputcaption">
+        <div></div>
+    </div>
+    <div class="inputvalue">
+        <div>Kaydet</div>
+    </div>
+    <div class="inputinfo">
+        <div>işlem sonucu bekleniyor</div>
+    </div>
+</div>
+
+
+
+<script>
+function getCities(){
+        $.ajax({
+        type: "GET",
+        enctype: 'application/json',
+        url: "http://localhost:8080/api/city/getAll",
+        contentType:"application/json",
+        timeout: 800000,
+        success: function (resultData) {
+            for(i=0;i<resultData.data.length;i++){
+               option=new Option(resultData.data[i].name,resultData.data[i].id);
+               document.getElementById("city").add(option);
+            }
+        },
+        error: function (e) {
+          alert("hata vaaaa");
+         }
+    });
+}
+</script>
+
+
+</body>
+</html>
